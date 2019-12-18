@@ -2,7 +2,7 @@ build/
 build/lib
 dist/
 diver.egg-info/
-
+examples/
 
 
 /diver/__pycache__/

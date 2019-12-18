@@ -24,7 +24,7 @@ sys.path.insert(0,os.path.abspath('./'))
 project = 'diver'
 copyright = '2019, test'
 author = 'test'
-
+master_doc = 'index'
 # The full version, including alpha/beta/rc tags
 release = '1.2.3'
 
@@ -34,11 +34,18 @@ release = '1.2.3'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_markdown_tables',
+extensions = ['IPython.sphinxext.ipython_console_highlighting',
+              'IPython.sphinxext.ipython_directive',
+              'sphinx_markdown_tables',
               'sphinx.ext.autodoc',
+              'sphinx.ext.intersphinx',
+              'sphinx.ext.autosummary',
+              'sphinx_gallery.gen_gallery',
               'sphinx.ext.napoleon',
-              'm2r'
+              'm2r',
+              'sphinx.ext.autosectionlabel'
               ]
+
 source_suffix = ['.rst', '.md']
 
 # source_parsers = {
@@ -69,8 +76,10 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-#html_theme = 'alabaster'
-html_theme = 'default'
+import sphinx_rtd_theme
+html_theme = "sphinx_rtd_theme"
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+#html_theme = 'default'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -83,3 +92,10 @@ html_static_path = ['_static']
 #             'auto_toc_tree_section': 'Contents',
 #             }, True)
 #     app.add_transform(AutoStructify)
+
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'sphinx'
+def setup(app):
+    app.add_stylesheet('custom.css')  # may also be an URL
+
+html_static_path = ['_static']
