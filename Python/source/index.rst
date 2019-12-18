@@ -25,8 +25,8 @@ Guide:
 
 .. toctree::
     :numbered:
-    :maxdepth: 2
-   
+    :maxdepth: 1
+
     introduction 
     reference_page   
 

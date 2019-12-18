@@ -9,7 +9,7 @@ from sklearn.neighbors import KernelDensity
 from scipy.stats import gaussian_kde
 import numpy as np
 
-@dispatch(object,object)
+#@dispatch(object,object)
 def l_layer(widget,x,**options):
     '''Loon layers
 
@@ -121,8 +121,8 @@ def l_layer(widget,x,**options):
 
 
 
-@dispatch(object,(gaussian_kde,KernelDensity))
-def l_layer(widget, x, **options):
+#@dispatch(object,(gaussian_kde,KernelDensity))
+def l_layer_kde(widget, x, **options):
     '''Layer Method for Kernel Density Estimation
 
     Layer a line that represents a kernel density estimate.
@@ -137,7 +137,7 @@ def l_layer(widget, x, **options):
         >>> import numpy as np
         >>> d = gaussian_kde(iris.iloc[:,1])
         >>> h = l_hist(iris.iloc[:,1],yshows='density')
-        >>> l = l_layer(h, d, color="steelblue", linewidth=3)
+        >>> l = l_layer_kde(h, d, color="steelblue", linewidth=3)
     '''
     if(not isinstance(widget,loon)):
         widget = loon(widget)

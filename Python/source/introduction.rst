@@ -1,3 +1,4 @@
 Introduction 
 ===========================
-asdasdas
+
+.. mdinclude:: ./intro.md

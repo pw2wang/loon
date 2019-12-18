@@ -31,7 +31,7 @@ from .l_layer import l_layer,l_layer_add,l_layer_ids,l_layer_group,l_layer_polyg
                     l_layer_demote,layer_get,l_layer_bbox,l_layer_getLabel, \
                     l_layer_getChildren,l_layer_getParent,l_layer_printTree, \
                     l_layer_isVisible,l_layer_getType,l_layer_index, \
-                    l_layer_layerVisibility,l_layer_groupVisibility
+                    l_layer_layerVisibility,l_layer_groupVisibility,l_layer_kde
                     
 from .l_ColorList import hex12tohex6,color_loon,loon_palette,l_colRemoveAlpha, \
                         l_setColorList,l_getColorList,l_setColorList_ColorBrewer, \
@@ -52,6 +52,7 @@ from .l_redraw import l_redraw
 from .l_size import l_size
 from .l_export import l_export,filetypes,l_export_valid_formats,exportImageDialog
 from .l_saveStates import l_saveStates
+from .l_getSavedStates import l_getSavedStates
 from .l_setTitleFont import l_setTitleFont
 from .l_copyStates import l_copyStates
 from .l_aspect import l_aspect,l_setAspect
@@ -69,6 +70,8 @@ from .l_context2d import l_context,l_context_delete,l_context_ids,l_context_rela
                          l_context_getLabel, l_context_add,l_context_add_context2d,\
                          l_context_add_geodesic2d,l_context_add_slicing2d
 from .l_navgraph import l_navgraph
+from .l_create_handle import l_create_handle
+from .l_layer_map import l_plot_map, l_layer_map
 from .tk import tk
 
 ### remove later 
@@ -94,7 +97,7 @@ __all__ = ['tk','l_data','l_hist','l_plot','l_serialaxes','l_subwin','l_toplevel
             'l_layer_demote','layer_get','l_layer_bbox','l_layer_getLabel',
             'l_layer_getChildren','l_layer_getParent','l_layer_printTree',
             'l_layer_isVisible','l_layer_getType','l_layer_index','l_layer_layerVisibility',
-            'l_layer_groupVisibility',
+            'l_layer_groupVisibility','l_layer_kde',
             'hex12tohex6','color_loon','loon_palette',
             'l_colRemoveAlpha','l_setColorList','l_getColorList','l_setColorList_ColorBrewer',
             'l_setColorList_hcl','l_setColorList_ggplot2','l_setColorList_baseR',
@@ -104,7 +107,7 @@ __all__ = ['tk','l_data','l_hist','l_plot','l_serialaxes','l_subwin','l_toplevel
             'l_getPlots','l_getLocations','l_move','l_move_grid','l_move_halign',
             'l_move_hdist','l_move_jitter','l_move_reset','l_move_valign','l_move_vdist',
             'l_size','l_export','l_export_valid_formats','exportImageDialog',
-            'l_saveStates','l_setTitleFont','l_copyStates','l_aspect','l_setAspect',
+            'l_saveStates','l_getSavedStates','l_setTitleFont','l_copyStates','l_aspect','l_setAspect',
             'l_glyph','l_glyph_relabel','l_glyph_delete','l_glyph_ids','l_glyph_getLabel',
             'l_glyph_getType','l_primitiveGlyphs','l_glyph_add','l_glyph_add_text',
             'l_glyph_add_pointrange','l_glyph_add_polygon','l_glyph_add_serialaxes',
@@ -115,7 +118,5 @@ __all__ = ['tk','l_data','l_hist','l_plot','l_serialaxes','l_subwin','l_toplevel
             'l_navigator_getPath',
             'l_context','l_context_delete','l_context_ids','l_context_relabel',
             'l_context_getLabel', 'l_context_add','l_context_add_context2d',
-            'l_context_add_geodesic2d','l_context_add_slicing2d','l_navgraph']
-
-if __name__ == '__main__' :
-    print(123)
+            'l_context_add_geodesic2d','l_context_add_slicing2d','l_navgraph','l_create_handle',
+            'l_plot_map','l_layer_map']

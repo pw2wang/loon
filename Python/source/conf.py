@@ -12,6 +12,7 @@
 #
 import os
 from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
 import sys
 sys.path.insert(0,os.path.abspath('../'))
 sys.path.insert(0,os.path.abspath('../diver'))
@@ -35,12 +36,14 @@ release = '1.2.3'
 # ones.
 extensions = ['sphinx_markdown_tables',
               'sphinx.ext.autodoc',
-              'sphinx.ext.napoleon']
+              'sphinx.ext.napoleon',
+              'm2r'
+              ]
 source_suffix = ['.rst', '.md']
 
-source_parsers = {
-    '.md': CommonMarkParser,
-}
+# source_parsers = {
+#     '.md': CommonMarkParser,
+# }
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = False
@@ -73,3 +76,10 @@ html_theme = 'default'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# def setup(app):
+#     app.add_config_value('recommonmark_config', {
+#             'url_resolver': lambda url: github_doc_root + url,
+#             'auto_toc_tree_section': 'Contents',
+#             }, True)
+#     app.add_transform(AutoStructify)

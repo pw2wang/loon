@@ -286,7 +286,25 @@ class loon_l_savedStates:
     def __getitem__(self, key):
         if(key in self.info.keys()):
             return self.info[key]
+        elif(isinstance(self.info[list(self.info.keys())[0]],dict)):
+            if(key in self.info[list(self.info.keys())[0]].keys()):
+                return {x:self.info[x][key] for x in self.info.keys()}
+            else:
+                exit(key + ' is not an vaild attribute in the saveState')                
         else:
-            exit(key + 'is not an vaild attribute in the saveState')
-
+            exit(key + ' is not an vaild attribute in the saveState')
+    def __setitem__(self, name, value):
+        if(name in self.info.keys()):
+            self.info[name] = value
+        elif(isinstance(self.info[list(self.info.keys())[0]],dict)):
+            if(name in self.info[list(self.info.keys())[0]].keys()):
+                for i in self.info.keys():
+                    self.info[i][name] = value
+            else:
+                exit(name + ' is not an vaild attribute in the saveState') 
+        else:
+            exit(name + ' is not an vaild attribute in the saveState')
+    def get_savedname(self):
+        return list(self.info.keys())
+        
 ######## Not finished yet 

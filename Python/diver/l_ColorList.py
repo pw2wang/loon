@@ -306,4 +306,4 @@ def l_setColorList_baseR():
 def l_setColorList_loon():
     """set color list of type loon defaults   
     """
-    tk.tk.loon('::loon::setColorList', 'loon')
+    tk.tk.call('::loon::setColorList', 'loon')

@@ -1,10 +1,8 @@
-# My Other Page Title {#MyOtherPageName}
-# **Introduction to loon**
-### **R.W. Oldford**
+
+# 1. **Introduction to loon**
 <!-- TOC -->
 
 - [**Introduction to loon**](#introduction-to-loon)
-        - [**R.W. Oldford**](#rw-oldford)
 - [`lplot()` the basic `loon` plot](#lplot-the-basic-loon-plot)
     - [Direct manipulation on the plot](#direct-manipulation-on-the-plot)
         - [Panning](#panning)
@@ -17,10 +15,11 @@
         - [moving points](#moving-points)
         - [adding colours to the inspector](#adding-colours-to-the-inspector)
         - [changing the inspector palette of colours](#changing-the-inspector-palette-of-colours)
-- [loon graphics (note that the result is assigned to p)](#loon-graphics-note-that-the-result-is-assigned-to-p)
-- [accessing the plot from its string representation](#accessing-the-plot-from-its-string-representation)
-- [Number in group 1 (e.g. as you might have -- here from saved colours)](#number-in-group-1-eg-as-you-might-have----here-from-saved-colours)
-- [Data on first few quakes in group 1.](#data-on-first-few-quakes-in-group-1)
+    - [Programmatic manipulation](#programmatic-manipulation)
+        - [accessing the plot](#accessing-the-plot)
+        - [printing the plot](#printing-the-plot)
+        - [getting plot contents](#getting-plot-contents)
+        - [setting plot contents](#setting-plot-contents)
 - [something a little more involved for up to 6 groups](#something-a-little-more-involved-for-up-to-6-groups)
 - [something crazy](#something-crazy)
 - [putting locations and size back](#putting-locations-and-size-back)
@@ -36,6 +35,7 @@
         - [high dimensional data and dimensionality reduction](#high-dimensional-data-and-dimensionality-reduction)
 
 <!-- /TOC -->
+
 <details><summary>setup</summary>
 <p>
 
@@ -48,7 +48,7 @@ sys.path.append('/Users/tedwang/Documents/GitHub/loon/Python/')
 </details>
 
 ```{python}
-from loon import * 
+from diver import * 
 ```
 
 > "Exposure, the effective laying open of the data to display the unanticipated, 
@@ -71,7 +71,7 @@ Here, we will walk through some of the **basic** functionality.
 
 --- 
 
-# `l_plot()` the basic `loon` plot
+# 2. `l_plot()` the basic `loon` plot
 
 Begin with a simple scatterplot of the `quakes` data from `R`
 
@@ -103,7 +103,7 @@ For the moment we'll focus mainly on the scatterplot.
 
 
 
-##  Direct manipulation on the plot
+## 2.1. Direct manipulation on the plot
 
 The loon scatterplot is highly interactive and can be **directly manipulated** using the mouse. 
 Several interactions are immediately available.
@@ -113,7 +113,7 @@ The colour red indicates selection, arrows and double images suggest movement, a
 
 ---
 
-### Panning
+### 2.1.1. Panning
 
 To pan the plot, select the plot interior with the right (or secondary) mouse button and move the mouse (with the button still down).  The direction of panning can be constrained by holding down the named modifier keys while panning. 
 
@@ -133,7 +133,7 @@ How does the larger scatterplot change?
 
 ---
 
-### Zooming
+### 2.1.2. Zooming
 
 Another way to dynamically focus on different parts of the plot is by zooming, using **scrolling**:
 
@@ -158,7 +158,7 @@ Using zooming and panning on the "World View"
 
 --- 
 
-### Selecting
+### 2.1.3. Selecting
 
 There are two ways to directly select points on the scatterplot using the mouse: either by selection (one at a time or multiple selections) or by "sweep selection" as shown below:
 
@@ -193,7 +193,7 @@ You will have already discovered how to colour selected points from the inspecto
 
 --- 
 
-## The inspector -- interacting with the plot
+## 2.2. The inspector -- interacting with the plot
 
 By the above experimentation, you will have already discovered how the inspector is used to change the loon plot. 
 
@@ -226,9 +226,9 @@ Try (in order) the following interactions between the inspector and the plot:
 
 --- 
 
-## More on direct manipulation  
+## 2.3. More on direct manipulation  
 
-### on brushing
+### 2.3.1. on brushing
 
 You should have a scatterplot of open circles with three clusters of points in red, blue, and orange.
 
@@ -253,7 +253,7 @@ You should now have four different coloured groups or clusters.
 
 --- 
 
-### on selection
+### 2.3.2. on selection
 
 When done, turn the selection back to the defaults:
 
@@ -278,7 +278,7 @@ Shift selection works with any mix of
 
 --- 
 
-### moving points
+### 2.3.3. moving points
 
 For a variety of reasons, we sometimes want to (temporarily) move points in a scatterplot.
 
@@ -304,7 +304,7 @@ For example:
 
 --- 
 
-### adding colours to the inspector
+### 2.3.4. adding colours to the inspector
 
 <img src="./images/intro/inspectorQuakesPlus10Cols.png" width="200" height="500">
 
@@ -327,21 +327,24 @@ Note:
 
 --- 
 
-### changing the inspector palette of colours
+### 2.3.5. changing the inspector palette of colours
 
 At the **beginning of a loon session** (that is, immediately after executing `import loon`) you might choose to change the default palette for the inspector to something that suits your tastes/problem.
 
 **Note**: There may be unintended side effects to changing the inspector colours after a plot (and hence the inspector) has been created so this should be avoided.
 
 A variety of functions exist to change an inspector's palette of colours:
-~~~~~~~~~~~~~~~~
-```{r changing the inspector palette, eval = FALSE} 
-l_setColorList_baseR()                             # base R palette
-l_setColorList_ColorBrewer("Set2")                 # colorblind friendly choice from ColorBrewer
-l_setColorList_hcl(luminance = 80)                 # set of hcl colours
-l_setColorList_ggplot2()                           # ggplot2's palette 
-l_setColorList_loon()                              # default loon palette
-l_setColorList(l_colRemoveAlpha(rainbow(5)))       # any set of colours without alpha
+``` 
+l_setColorList_baseR()                             
+# base R palette
+l_setColorList_ColorBrewer("Set2")                 
+# colorblind friendly choice from ColorBrewer
+l_setColorList_hcl(luminance = 80)                 
+# set of hcl colours
+l_setColorList_ggplot2()                           
+# ggplot2's palette 
+l_setColorList_loon()                              
+# default loon palette
 ```
 
 To change the palette
@@ -356,26 +359,26 @@ close it to force a refresh its colour palette.
 
 --- 
 
-## Programmatic manipulation 
+## 2.4. Programmatic manipulation 
 
-### accessing the plot
+### 2.4.1. accessing the plot
 
-The plot itself is a (tcl) data structure and can be assigned to an `R` variable.
+The plot itself is a (tcl) data structure and can be assigned to an python variable.
 
 Either at construction (the preferable way):
 
-```{r assign loon plot, eval = TRUE, echo = TRUE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy = FALSE}
+```
 # loon graphics (note that the result is assigned to p)
-p <- l_plot(x = quakes$long, y = quakes$lat, 
+p = l_plot(x = quakes.long, y = quakes.lat, 
             xlabel = "longitude", ylabel = "latitude",
             title = "Tonga trench earthquakes")
 ```
 
 or, if (as we did) you forgot to do that or reassigned something else to that variable (more likely), by accessing the plot from its `tcl` string:
 
-```{r create handle for loon plot, eval = FALSE, echo = TRUE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy = FALSE}
-# accessing the plot from its string representation
-p <- l_create_handle(".l0.plot")
+```
+# 4. accessing the plot from its string representation
+p = l_create_handle(".l0.plot")
 ```
 
 
@@ -386,25 +389,15 @@ Do this and assign your plot to `p`.  You might have to look at the window to ge
 
 --- 
 
-### printing the plot
+### 2.4.2. printing the plot
 
 Were we to now print `p`
 
-```{r printed representation loon plot, eval = TRUE, echo = TRUE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy = FALSE}
-p 
+```
+p.plot
 ```
 
 we get the string name of the plot, but with a class attribute.  This is the **value** of `p` and provides us access to a  very rich data structure,  but one whose values reside in `tcl`. 
-
-For example, we can access this value and, like plots from `lattice` or `ggplot2` produce a `grid` data structure that can then be displayed as a `grid` graphic in `R`.
-
-The simplest way to achieve this is to use the generic `R` function `plot()`
-
-```{r plot of loon plot, eval = FALSE, echo = TRUE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "50%", warning=FALSE, message=FALSE, tidy = FALSE}
-plot(p)
-```
-
-Note that this will always reflect the *current state of the loon plot*.  In this way, you can get snapshots of the loon plot after any interaction.
 
 **Exercise**: Try this.  Change `p` by direct manipulation in `loon` and repeat. 
 
@@ -412,27 +405,27 @@ This allows the visual representation of a `loon` plot to be displayed at any ti
 
 ---
 
-### getting plot contents
+### 2.4.3. getting plot contents
 
 There are `names` associated with a loon plot indicating its contents or **states**:
 
-```{r names, eval = TRUE, echo = TRUE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy = TRUE}
-names(p)
+```
+p.names
 ```
 
 These features of `p` can be directly accessed the `[]` function.
 
 For example, 
 
-```{r showGuides, eval = TRUE, echo = TRUE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy = TRUE}
+```
 p["showGuides"]
 ```
 
 A more meaningful example might be identify groups with the colours of the points.  
 This could be done simply as follows 
 
-```{r set up group cols, eval = TRUE, echo = FALSE}
-cols_saved <- c("red", "red", "orange", "red", "red", "orange", 
+```
+cols_saved = ["red", "red", "orange", "red", "red", "orange", 
 "black", "orange", "orange", "red", "red", "black", 
 "red", "red", "black", "orange", "black", "red", 
 "red", "red", "red", "black", "red", "orange", 
@@ -599,72 +592,77 @@ cols_saved <- c("red", "red", "orange", "red", "red", "orange",
 "orange", "black", "black", "black", "red", "red", 
 "red", "red", "orange", "red", "orange", "red", 
 "black", "orange", "orange", "black"
-)
-p["color"] <- cols_saved
-
+]
+p["color"] = cols_saved
 ```
 
-```{r group by colour, eval = TRUE, echo = TRUE, tidy = FALSE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE}
-unique_cols <- unique(p['color'])
-group1 <- p['color'] == unique_cols[1]
-# Number in group 1 (e.g. as you might have -- here from saved colours)
+```
+import numpy as np
+unique_cols = np.unique(p['color'])
+group1 = p['color'] == unique_cols[0]
+
+# 5. Number in group 1 (e.g. as you might have -- here from saved colours)
 sum(group1)
-# Data on first few quakes in group 1.
-head(quakes[group1,])
+
+# 6. Data on first few quakes in group 1.
+quakes.loc[group1,].head()
 ```
+
 
 Alternatively, a function could be written to save the groups as a list of logical vectors (one for each group):
 
-```{r getGroups, eval = TRUE, echo = TRUE, tidy = FALSE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE}
-getGroups <- function(loonplot){
+
+```def getGroups(loonplot):
     # make sure it is an "l_plot"
-    if (!is(loonplot, "l_plot")) stop("loonplot must be an l_plot")
+    if (not isinstance(loonplot, loon)): 
+        print("loonplot must be an l_plot")
     
     # use color to identify groups
-    unique_cols <- unique(loonplot['color'])
-    lapply(unique_cols,
-           FUN = function(col){loonplot['color'] == col}
-           )
-}
+    unique_cols = np.unique(loonplot['color'])
+    res = [loonplot['color'] == x for x in unique_cols]
+    return res
 
-myGroups <- getGroups(p)    # returns groups identified by unique colour in p
-nGroups <- length(myGroups) # number of groups
-group1 <- myGroups[[1]]     # each group is an element of the list myGroups
+myGroups = getGroups(p)    # returns groups identified by unique colour in p
+nGroups = len(myGroups) # number of groups
+group1 = myGroups[0]     # each group is an element of the list myGroups
 ```
 
 Similarly, other point symbol characteristics (e.g. `size`, `glyph`) might be used to define groups.  This is particularly handy when these are first determined interactively.
 
 --- 
 
-### setting plot contents
+### 2.4.4. setting plot contents
 
 In addition to accessing the state values of a loon plot using `[]`, its values may also be set using `[]`.  For example, try these:
+~~~~~~~~~~~~~~
+```
+import random
+import time 
+p["showGuides"] = True
 
-```{r set examples, eval = FALSE, echo = TRUE, tidy = FALSE, fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE}
-p["showGuides"] <- TRUE
+p["size"] = random.choices(range(30),k=len(p['x']))
 
-p["size"] <- sample(1:30, size = length(p["x"]), replace = TRUE)
 
-for (i in 1:length(myGroups))  {
-    p["selected"] <- myGroups[[i]]
-    Sys.sleep(1)
-}
-p["selected"] <- FALSE
+p["selected"] = myGroups[0]
+p["selected"] = myGroups[1]
 
-# something a little more involved for up to 6 groups
-myCols <- c("firebrick", "steelblue", "purple", 
-            "orange", "grey10", "grey80")
+
+p["selected"] =  False
+
+# 3. something a little more involved for up to 6 groups
+myCols = ["firebrick", "steelblue", "purple", 
+            "orange", "grey10", "grey80"]
 for (i in 1:length(myGroups)) {
     p["color"][myGroups[[i]]] <- myCols[i]
 }
 
-# something crazy
+# 4. something crazy
 for (j in 1:10) {
   p["xTemp"] <- p["x"] + runif(length(p["x"]), min = -0.5, max = 0.5)
   Sys.sleep(0.1)
 }
 
-# putting locations and size back
+# 5. putting locations and size back
 p["xTemp"] <- p["x"]
 p["size"] <- 4
 
@@ -673,13 +671,13 @@ p["size"] <- 4
 --- 
 
 
-## Adding layers
+## 3.5. Adding layers
 
 `loon` plots are actually a little richer still.  The scatterplot is only one possible layer in a plot.  It could have many more, each layer having different geometric objects.
 
 ---
 
-### Example: adding maps
+### 3.5.1. Example: adding maps
 For example, we can add a map to the current loon plot `p`.
 
 First get the relevant map:
@@ -721,7 +719,7 @@ Now play with the scaling buttons in the loon inspector.
 
 ---
 
-### Effect of scaling choices
+### 3.5.2. Effect of scaling choices
 
 
 Adding the map allows us to see the effect of all three plot scaling choices available in the inspector.
@@ -737,7 +735,7 @@ Note that the plot in the world view matches that of the actual plot.  Also the 
 
 ---
 
-### the "Layers" tab
+### 3.5.3. the "Layers" tab
 
 The map is added as a layer, which can be seen by selecting the "Layers" tab in the inspector:
 
@@ -749,19 +747,20 @@ This allows a lot of interaction with the layers - for example changing their di
 
 ---
 
-## Syntax: loon's `l_plot()` is like base graphics `plot()`
+## 3.6. Syntax: loon's `l_plot()` is like base graphics `plot()`
 
 
 `loon`'s `l_plot()` syntax **intentionally resembles** that of `plot()` from the base `graphics` package:
 
 
 ```{r loon and base syntax, eval = FALSE, echo = TRUE, fig.align="center", fig.width = 6, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy=FALSE}
-# Base graphics
+
+# 6. Base graphics
 plot(x = quakes$long, y = quakes$lat, 
      xlab = "longitude", ylab = "latitude",
      main = "Tonga trench earthquakes")
 
-# loon graphics
+# 7. loon graphics
 l_plot(x = quakes$long, y = quakes$lat, 
        xlabel = "longitude", ylabel = "latitude",
        title = "Tonga trench earthquakes")
@@ -785,7 +784,7 @@ that turns the loon plot (as the first argument of `plot.loon()`) into a grid ob
 
 ---
 
-# `l_hist()` the `loon` histogram
+# 4. `l_hist()` the `loon` histogram
 
 As seen earlier, the `quakes` data has some other variates in addition to the latitude and longitude of the quakes.
 
@@ -816,11 +815,11 @@ Note that the inspector has changed.  There is a different inspector for each ty
 
 ---
 
-# Linking 
+# 5. Linking 
 
 Now that we have both a scatterplot and a histogram, we can explore one of the most important features of an interactive data visualization system like loon.
 
-## `linkingGroup`
+## 5.1. `linkingGroup`
 
 The principal feature of loon plots which effect the linking of displays is the setting of a common `linkingGroup`.
 
@@ -863,7 +862,7 @@ The principal feature of loon plots which effect the linking of displays is the 
 
 ---
 
-## linking many plots
+## 5.2. linking many plots
 
 Arbitrarily many plots may be created and linked in loon.
 
@@ -905,7 +904,7 @@ Brushing any one of these plots will cause the other plots to highlight in respo
 Note that selection effectively shows the relations in one plot  **conditional** upon the values actively being selected (e.g. brushed) in another.
 
 
-## `linkingKey`
+## 5.3. `linkingKey`
 
 Observations in a `loon` plot are uniquely identified (for the purpose of linking) by their `linkingKey`. Pardon the pun but this is the key to linking in `loon`.
 
@@ -937,12 +936,13 @@ Rather than the default values, the `linkingKey` can be any vector of unique str
 
 ---
 
-# Three dimensional plots - `l_plot3D`
+# 6. Three dimensional plots - `l_plot3D`
 
 Given that the `quakes` data has three spatial dimensions (`long`, `lat`, and `depth`), it would be natural to view this in a three dimensional scatterplot.
 
 ```{r plot_3D,  fig.align="center", fig.width = 5, fig.height = 5, out.width = "75%", warning=FALSE, message=FALSE, tidy = FALSE}
-# First, scale the data
+
+# 8. First, scale the data
 scaled_quakes <- l_scale3D(quakes)
 
 p_mag_stations <- l_plot3D(x = scaled_quakes$long,  
@@ -964,13 +964,13 @@ When `rotation mode` is toggled off (with the key `r`), the plot can again be br
 
 ---
 
-# Extras
+# 7. Extras
 
 Miscellaneous other topics on and sources of working and programming with `loon`.
 
 ---
 
-## More examples
+## 7.1. More examples
 
 Being able to get and set the plot contents means that it is possible to capture different
 plot states as `grobs`. 
@@ -983,13 +983,14 @@ help(package = "loon")
 and more complex examples and more general discussion via `loon`'s online help
 ```{r, eval=FALSE}
 l_help()
-# or more simply via the online manual
+
+# 9. or more simply via the online manual
 l_web()
 ```
 
 ---
 
-### Other vignettes
+### 7.1.1. Other vignettes
 
 Other vignettes have been developed to cover a range of topics.  These currently include:
 
@@ -1012,7 +1013,7 @@ Other vignettes have been developed to cover a range of topics.  These currently
        
 ---
 
-### loon demos
+### 7.1.2. loon demos
 
 There are numerous demos in loon whose source code might be examined for more examples of using `loon`.  To see them all
 
@@ -1023,13 +1024,14 @@ demo(package = "loon")  # list all demos
 The range is quite broad.  For example, 
 
 ```{r loon demo examples, eval = FALSE}
-### teaching demos
+
+### 9.1. teaching demos
 demo("l_regression", 
      package = "loon")  # lots using the Old Faithful geyser
 demo("l_regression_influential", 
      package = "loon")  # move and recolor points to change the regression fit
 
-### gapminder
+### 9.2. gapminder
 demo("l_us_and_them", 
      package = "loon")  #  basic demo
 demo("l_us_and_them_slider", 
@@ -1037,20 +1039,20 @@ demo("l_us_and_them_slider",
 demo("l_us_and_them_choropleth", 
      package = "loon")  # world map and linked with a scatterplot
 
-### the spatial package sp                       
+### 9.3. the spatial package sp                       
 demo("l_polygons_sp", 
      package = "loon")  # layer polygons with class sp 
 
-### layering and custom layouts 
+### 9.4. layering and custom layouts 
 demo("l_layers")  # demonstrate layer types   
 demo("l_layout")  # custom layout widgets      
 demo("l_widgets") # inspector and plot in one window
 
-### novel brushing and linking 
+### 9.5. novel brushing and linking 
 demo("l_knn")     # brushing by k nearest points in some subspace
 demo("l_us_and_them_choropleth")  # many to one linking 
 
-### high dimensional data and dimensionality reduction
+### 9.6. high dimensional data and dimensionality reduction
 demo("l_ng_images_frey_LLE") # navigation graphs, image data, LLE
 demo("l_ng_dimred")          # comparing dimension reduction methods
 ```
@@ -1059,9 +1061,9 @@ The code that appears in the console after the demo can be examined and reused t
 
 ---
 
-## Extensions to loon via other packages
+## 7.2. Extensions to loon via other packages
 
-###  `zenplots` 
+### 7.2.1. `zenplots` 
 
 This package is available on CRAN. 
 ```{r, eval=FALSE}
@@ -1077,7 +1079,7 @@ It is similar to `pairs` plots but allows many many more plots to be displayed. 
 >
 >First, the matrix organization of the pairs layout is replaced by the “zig-zag” layout of zenplot. Second, the number of plots produced is about half that of a pairs plot allowing each plot in a zenplot to be given more visual space."
 
-### Specialty `loon` extensions -  `loon.<specialty>` packages
+### 7.2.2. Specialty `loon` extensions -  `loon.<specialty>` packages
 
 There are/will be other packages available which build on `loon`.  Those developed by us are typically prefixed with `loon` (e.g. `loon.ggplot`)
 
@@ -1090,7 +1092,7 @@ There you can see what is coming up.
 
 ---
 
-## More on grid graphics and loon
+## 7.3. More on grid graphics and loon
 
 Graphics in the `grid` package are built up from graphical objects or `grobs`.
 

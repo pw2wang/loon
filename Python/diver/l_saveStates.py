@@ -42,8 +42,7 @@ def l_saveStates(p, states = ["color", "active", "selected","linkingKey", "linki
         >>> # (say in RMarkdown) to set the new plot's values to those
         >>> # previously determined interactively.
         >>> p_new = l_plot(iris, showGuides = True)
-        >>> import pickle
-        >>> p_saved_info = pickle.load(open(myFileName,'rb'))
+        >>> p_saved_info = l_getSavedStates(myFileName)
         >>> p_new["color"] = p_saved_info['color']
         >>> # The result is that p_new looks like p did
         >>> # (after your interactive exploration)
@@ -60,13 +59,13 @@ def l_saveStates(p, states = ["color", "active", "selected","linkingKey", "linki
     if(isinstance(p,loon_l_compound)):
         result = {}
         plots = l_getPlots(p)
-        for p_name,p in plots.items():
+        for p_name,p_sub in plots.items():
             if('all' in states):
                 plots_states = p.names
             else:
-                plots_states = list(set(p.names) & set(states))
+                plots_states = list(set(p_sub.names) & set(states))
             
-            result[p_name] = {x:p[x] for x in plots_states}
+            result[p_name] = {x:p_sub[x] for x in plots_states}
     else:
         if('all' in states):
             states = p.names

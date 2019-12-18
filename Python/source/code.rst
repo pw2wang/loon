@@ -1,4 +1,4 @@
-This is code 
+Code
 =================
 .. automodule:: diver
     :members:
